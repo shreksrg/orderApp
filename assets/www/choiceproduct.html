@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Agilesc mobile order</title>
+    <link rel="stylesheet" href="staticx/css/jquery.mobile-1.1.0.css"/>
+    <link rel="stylesheet" href="staticx/css/jqm-docs.css"/>
+    <script src="staticx/js/libs/jquery-1.7.1%20core.js"></script>
+    <script src="staticx/js/libs/jquery.mobile-1.1.0.js"></script>
+    <title>choose products to add into order</title>
+</head>
+<body>
+
+<div data-role="dialog">
+
+    <div data-role="header" data-theme="f">
+        <h1 style="font-size: 21px">选择加入订单的产品</h1>
+
+
+
+    </div>
+    <!-- /header -->
+
+    <div data-role="content" data-theme="c" >
+
+        <div class="content-primary">
+
+            <div  data-role="fieldcontain">
+                <fieldset data-role="controlgroup" data-filter="true">
+
+                    <input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom" />
+                    <label for="checkbox-1a">天喔柚子蜂蜜茶</label>
+
+                    <input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom" />
+                    <label for="checkbox-2a">午后红茶</label>
+
+                    <input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom" />
+                    <label for="checkbox-3a">康师傅矿泉水</label>
+
+                    <input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom" />
+                    <label for="checkbox-4a">红牛软饮</label>
+                </fieldset>
+            </div>
+
+
+        </div>
+        <!--/content-primary -->
+
+        <div id="btnAdd"  data-role="button" data-rel="back" data-theme="b">确定添加</div>
+    </div>
+    <!-- /content -->
+
+
+
+</div>
+<!-- /page -->
+
+</body>
+</html>
+<script type="text/javascript">
+    alert('hello,shrek');
+
+    $('#btnAdd').click(function(){
+        alert('hello,shrek');
+        return false;
+    })
+</script>

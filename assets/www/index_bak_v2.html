@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile: Demos and Documentation</title>
+    <link rel="stylesheet" href="staticx/css/jquery.mobile-1.1.0.css"/>
+    <link rel="stylesheet" href="staticx/css/jqm-docs.css"/>
+    <script src="staticx/js/libs/jquery-1.7.1%20core.js"></script>
+    <script src="staticx/js/libs/phonegap.js"></script>
+    <script src="staticx/transactions/initializer.js"></script>
+
+    <script src="staticx/js/libs/jquery.mobile-1.1.0.js"></script>
+
+    <script type="text/javascript">
+        /*var dbo;
+         var rsOrder = {};
+         var rsCustomer = {};
+         var rsBrand = {};
+         var rsCommodity = {};
+         var rsProduct = [];
+         var commoditySetting = 'new';
+         var orderState = 'new'*/
+    </script>
+    <title>Agilesc electronic sales orders</title>
+</head>
+<body>
+<div data-role="page" class="type-interior" id="pageOrderList">
+    <div data-role="header" data-theme="f" data-position="fixed">
+        <h1 style="font-size: 21px">安捷力移动电子订单</h1>
+
+        <ul data-role="controlgroup" data-type="horizontal" class="localnav">
+            <li><a href="customer_list.html" data-role="button" data-icon="plus">创建订单</a></li>
+            <li><a href="customer_mlist.html" data-role="button"
+                    >客户管理</a></li>
+            <li><a href="index.html" data-role="button">产品管理</a></li>
+            <li><a href="#" id="btninitDB" data-role="button" data-ajax="false">初始化数据库</a>
+            <li><a href="dialog.html" id="btnpop" data-role="button" data-rel="dialog">弹出层测试</a></li>
+        </ul>
+
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+        <div class="sk-primarycontent">
+            <ul id="ordersList" data-role="listview" data-inset="true">
+                <li><a data-order-id=101 class="sk-ui-link-inherit" href="order_particulars.html">
+                    <span class="sk-order-thumbs"> <img src="customer/amy_jones100x100.jpg"/></span>
+
+                    <h2 class="sk-orderid">01</h2>
+
+                    <h3>华联吉买盛大兴街店</h3>
+
+                    <p class="ui-li-desc sk-orderprice">￥3200.00</p>
+
+                    <p class="ui-li-desc">2012-06-11 13:56:00</p>
+                </a><span> <a data-rel="dialog" href="lists-split-purchase.html"
+                              class="ui-li-link-alt sk-ui-li-link-alt ui-btn ui-btn-up-c" data-theme="c"><img
+                        class="sk-icon-signpen" src="staticx/img/signed.png" alt=""></a> </span></li>
+                <li><a data-order-id=102 class="sk-ui-link-inherit" href="order_particulars.html"> <span
+                        class="sk-order-thumbs"> <img
+                        src="customer/amy_jones100x100.jpg"/></span>
+
+                    <h2 class="sk-orderid">02</h2>
+
+                    <h3>华联吉买盛大兴街店</h3>
+
+                    <p class="ui-li-desc sk-orderprice">￥3200.00</p>
+
+                    <p class="ui-li-desc">2012-06-11 13:56:00</p>
+                </a><span> <a data-transition="slideup" data-rel="dialog" href="lists-split-purchase.html"
+                              class="ui-li-link-alt sk-ui-li-link-alt ui-btn ui-btn-up-c" data-theme="c"><img
+                        class="sk-icon-signpen" src="staticx/img/pen.png" alt=""></a> </span></li>
+                <li><a data-order-id=103 class="sk-ui-link-inherit" href="order_particulars.html">
+                    <span class="sk-order-thumbs"> <img src="customer/amy_jones100x100.jpg"/></span>
+
+
+                    <h2 class="sk-orderid">03</h2>
+
+                    <h3>华联吉买盛大兴街店</h3>
+
+                    <p class="ui-li-desc sk-orderprice">￥3200.00</p>
+
+                    <p class="ui-li-desc">2012-06-11 13:56:00</p>
+                </a><span> <a data-transition="slideup" data-rel="dialog" href="lists-split-purchase.html"
+                              class="ui-li-link-alt sk-ui-li-link-alt ui-btn ui-btn-up-c" data-theme="c"><img
+                        class="sk-icon-signpen" src="staticx/img/signed.png" alt=""></a> </span></li>
+
+
+            </ul>
+        </div>
+
+        <!--/content-primary -->
+
+    </div>
+    <!-- /content -->
+
+    <div data-role="footer" data-position="fixed" class="footer-docs" data-theme="c">
+        <p>&copy; 2011-12 For Agilesc mobile</p>
+    </div>
+</div>
+<!-- /page -->
+<script type="text/javascript">
+
+
+    $('#orderLists li a[data-order-id]').bind('tap', function () {
+        rsCustomer.id = $(this).attr('data-order-id');
+    });
+
+    /*$(document).bind("pagebeforeload", function (event, data) {
+     alert('1.pagebeforeload!');
+
+     });*/
+
+
+    $('#btnadd').bind('vclick', function () {
+        var $uli = $('#orderlist li').eq(1)[0].toString();
+        alert($uli);
+        //   $(' <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div" data-icon="arrow-r" data-iconpos="right" data-theme="a" class="ui-btn ui-btn-icon-right ui-li-has-arrow ui-li ui-corner-top ui-btn-up-a"><div class="ui-btn-inner ui-li ui-corner-top"><div class="ui-btn-text"><a href="acura.html" class="ui-link-inherit">Acura</a></div><span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span></div></li>').appendTo('#blist');
+
+    });
+    var id = 23;
+
+
+    $('#btninitDB').live('tap',function(){
+
+        dbo.transaction(populateDB, errorCB, populateDB_success);
+        $('#ordersList').listview('refresh');
+        return false;
+    });
+    $('#btntc').live('vclick', function () {
+        $('#ordersList').listview('refresh');
+        // $(this).attr('href', 'customer_mlist.html?id=23');
+        // alert(id);
+
+        //$.mobile.loadPage( "customer_mlist.html" );
+        // alert('hello,shreks');
+        // $.mobile.changePage( "tc-3.html", { transition: "slideup",reloadPage:'true'} );
+        return false;
+    });
+</script>
+</body>
+</html>

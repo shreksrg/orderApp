@@ -1,0 +1,203 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile: Demos and Documentation</title>
+    <link rel="stylesheet" href="staticx/css/jquery.mobile-1.1.0.css"/>
+    <link rel="stylesheet" href="staticx/css/jqm-docs.css"/>
+    <script src="staticx/js/libs/jquery-1.7.1%20core.js"></script>
+    <script src="staticx/js/libs/jquery.mobile-1.1.0.js"></script>
+    <title>Agilesc electronic sales orders</title>
+</head>
+<body>
+
+<div data-role="page" class="type-interior" id="album-list">
+
+    <div data-role="header" data-theme="f" data-position="fixed">
+        <h1 style="font-size: 21px">安捷力移动电子订单</h1>
+        <a href="index.html" data-icon="home" data-iconpos="notext">Home</a>
+        <a href="../nav.html" data-icon="search" data-iconpos="notext" data-rel="dialog"
+           data-transition="fade">Search</a>
+        <ul class="localnav ui-corner-all ui-controlgroup ui-controlgroup-horizontal" data-type="horizontal"
+            data-role="controlgroup">
+            <li><a href="order_append.html" data-role="button" data-transition="fade" data-theme="c">创建订单</a></li>
+            <li><a href="customer_mlist.html" data-role="button" data-transition="fade" data-theme="c">客户管理</a></li>
+            <li><a href="index.html" data-role="button" data-transition="fade" data-theme="c">产品管理</a></li>
+
+        </ul>
+
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+
+        <div class="sk-primarycontent">
+            <ul class="ui-listview ui-listview-inset ui-corner-all ui-shadow sk-orderlist">
+                <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div"
+                    data-icon="false"
+                    data-iconpos="right" data-theme="c"
+                    class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-corner-top ui-btn-up-c">
+                    <div class="ui-btn-inner ui-li ui-li-has-alt ui-corner-top">
+                        <div class="ui-btn-text">
+
+                            <a href="order_edit.html" class=" ui-link-inherit sk-ui-link-inherit" >
+                                <img src="customer/amy_jones100x100.jpg" class="ui-li-thumb sk-ui-li-thumb">
+
+                                <h3 class="ui-li-heading">沃尔玛杨浦店</h3>
+
+                                <p class="ui-li-desc sk-orderprice">￥2500.00</p>
+
+                                <p class="ui-li-desc">2012-06-11 13:56:00</p>
+
+
+                            </a>
+
+                            <h2 class="sk-orderid">01</h2>
+
+                        </div>
+                    </div>
+
+                    <a data-transition="pop" data-rel="dialog" href="dialog.html" title="订单签字"
+                       class="ui-li-link-alt sk-ui-li-link-alt ui-btn ui-btn-up-c ui-corner-tr" data-corners="false"
+                       data-shadow="false"
+                       data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="false"
+                       data-theme="c"><span class="ui-btn-inner ui-corner-tr"><img class="sk-icon-signpen"
+                                                                                   src="staticx/img/pen.png"
+                                                                                   alt=""></span></a>
+                </li>
+
+
+                <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div"
+                    data-icon="false"
+                    data-iconpos="right" data-theme="c"
+                    class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-btn-up-c">
+                    <div class="ui-btn-inner ui-li ui-li-has-alt">
+                        <div class="ui-btn-text">
+
+                            <a href="order_detail.html" class="ui-link-inherit sk-ui-link-inherit">
+                                <img src="customer/amy_jones100x100.jpg" class="ui-li-thumb sk-ui-li-thumb">
+
+                                <h3 class="ui-li-heading">家乐福徐家汇店</h3>
+
+                                <p  class="ui-li-desc sk-orderprice">￥2500.00</p>
+
+                                <p class="ui-li-desc">2012-06-11 13:56:00</p>
+
+
+                            </a>
+                            <h2 class="sk-orderid">02</h2>
+                        </div>
+                    </div>
+                    <a data-transition="slideup" data-rel="dialog" href="lists-split-purchase.html" title="Purchase album
+                " class="ui-li-link-alt sk-ui-li-link-alt ui-btn ui-btn-up-c" data-corners="false" data-shadow="false"
+                       data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="false"
+                       data-theme="c"><span class="ui-btn-inner ui-corner-tr"><img class="sk-icon-signpen"
+                                                                                   src="staticx/img/signed.png"
+                                                                                   alt=""></span></a></li>
+                <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div"
+                    data-icon="false"
+                    data-iconpos="right" data-theme="c"
+                    class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-btn-up-c">
+                    <div class="ui-btn-inner ui-li ui-li-has-alt">
+                        <div class="ui-btn-text">
+
+                            <a href="order_detail.html" class="ui-link-inherit sk-ui-link-inherit">
+                                <img src="customer/amy_jones100x100.jpg" class="ui-li-thumb sk-ui-li-thumb">
+
+                                <h3 class="ui-li-heading">家乐福徐家汇店</h3>
+
+                                <p  class="ui-li-desc sk-orderprice">￥2500.00</p>
+
+                                <p class="ui-li-desc">2012-06-11 13:56:00</p>
+
+
+                            </a>
+                            <h2 class="sk-orderid">03</h2>
+                        </div>
+                    </div>
+                    <a data-transition="slideup" data-rel="dialog" href="lists-split-purchase.html" title="Purchase album
+                " class="ui-li-link-alt sk-ui-li-link-alt ui-btn ui-btn-up-c" data-corners="false" data-shadow="false"
+                       data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="false"
+                       data-theme="c"><span class="ui-btn-inner ui-corner-tr"><img class="sk-icon-signpen"
+                                                                                   src="staticx/img/signed.png"
+                                                                                   alt=""></span></a></li>
+                <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div"
+                    data-icon="false"
+                    data-iconpos="right" data-theme="c"
+                    class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-btn-up-c">
+                    <div class="ui-btn-inner ui-li ui-li-has-alt">
+                        <div class="ui-btn-text">
+
+                            <a href="order_append.html" class="ui-link-inherit sk-ui-link-inherit">
+                                <img src="customer/amy_jones100x100.jpg" class="ui-li-thumb sk-ui-li-thumb">
+
+                                <h3 class="ui-li-heading">家乐福徐家汇店</h3>
+
+                                <p  class="ui-li-desc sk-orderprice">￥2500.00</p>
+
+                                <p class="ui-li-desc">2012-06-11 13:56:00</p>
+
+
+                            </a>
+                            <h2 class="sk-orderid">04</h2>
+                        </div>
+                    </div>
+                    <a data-transition="slideup" data-rel="dialog" href="lists-split-purchase.html" title="Purchase album
+                " class="ui-li-link-alt sk-ui-li-link-alt ui-btn ui-btn-up-c" data-corners="false" data-shadow="false"
+                       data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="false"
+                       data-theme="c"><span class="ui-btn-inner ui-corner-tr"><img class="sk-icon-signpen"
+                                                                                   src="staticx/img/signed.png"
+                                                                                   alt=""></span></a></li>
+
+
+                <li data-corners="false" data-shadow="false" data-iconshadow="true" data-wrapperels="div"
+                    data-icon="false"
+                    data-iconpos="right" data-theme="c"
+                    class="ui-btn ui-btn-icon-right ui-li ui-li-has-alt ui-li-has-thumb ui-corner-bottom ui-btn-up-c">
+                    <div class="ui-btn-inner ui-li ui-li-has-alt">
+                        <div class="ui-btn-text">
+
+                            <a href="order_append.html" class="ui-link-inherit sk-ui-link-inherit">
+                                <img src="customer/amy_jones100x100.jpg" class="ui-li-thumb sk-ui-li-thumb ui-corner-bl">
+
+                                <h3 class="ui-li-heading">华联吉买盛大兴街店</h3>
+
+                                <p  class="ui-li-desc sk-orderprice">￥3200.00</p>
+
+                                <p class="ui-li-desc">2012-06-11 13:56:00</p>
+
+
+                            </a>
+                            <h2 class="sk-orderid">05</h2>
+                        </div>
+                    </div>
+                    <a data-transition="slideup" data-rel="dialog" href="lists-split-purchase.html" title="Purchase album
+                " class="ui-li-link-alt sk-ui-li-link-alt ui-btn ui-btn-up-c ui-corner-br" data-corners="false"
+                       data-shadow="false"
+                       data-iconshadow="true" data-wrapperels="span" data-icon="false" data-iconpos="false"
+                       data-theme="c"><span class="ui-btn-inner ui-corner-tr"><img class="sk-icon-signpen"
+                                                                                   src="staticx/img/pen.png"
+                                                                                   alt=""></span></a></li>
+
+
+            </ul>
+
+        </div>
+
+
+        <!--/content-primary -->
+
+
+    </div>
+    <!-- /content -->
+
+    <div data-role="footer" data-position="fixed" class="footer-docs" data-theme="c">
+        <p>&copy; 2011-12 For Agilesc mobile</p>
+    </div>
+
+</div>
+<!-- /page -->
+
+</body>
+</html>

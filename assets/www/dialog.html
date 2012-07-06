@@ -1,0 +1,25 @@
+<div data-role="dialog">
+
+    <div data-role="header" data-theme="d">
+        <h1>订单确认签收</h1>
+
+    </div>
+
+    <div data-role="content" data-theme="c">
+        <h3>订单编号:DT28</h3>
+
+        <p>提示：确认订单后，订单信息不能再编辑！</p>
+        <a href="#" data-role="button" data-rel="back" data-theme="b">确定签收</a>
+        <a href="#" id="btncanel" data-role="button" data-theme="c">取消</a>
+    </div>
+    <script type="text/javascript">
+        $('#btncanel').bind('vclick', function () {
+            alert('hello,shrek');
+            $('.ui-dialog').dialog('close');
+            //alert( $('#btnpop').attr('href'));
+            // alert('hello,shrek');
+        })
+
+
+    </script>
+</div>

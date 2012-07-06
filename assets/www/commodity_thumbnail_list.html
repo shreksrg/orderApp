@@ -1,0 +1,37 @@
+<div data-role="page" data-theme="c" id="pageCommodityList">
+    <div data-role="header" data-theme="f">
+        <h1 style="font-size: 28px; margin:8px 0">选择商品图片</h1>
+        <a href="brand_list.html" data-icon="back" data-iconpos="notext" data-direction="reverse">Home</a>
+        <a href="order_list.html" data-icon="home" data-iconpos="notext"
+           data-transition="fade">home</a>
+
+    </div>
+
+
+    <div data-role="content" data-theme="c">
+
+        <div class="content-primary">
+
+            <ul id="commodityLists" data-role="listview" data-filter="true" data-split-icon="gear" data-inset="true"
+                data-split-theme="a">
+
+            </ul>
+        </div>
+        <!--/content-primary -->
+
+    </div>
+    <script type="text/javascript">
+        dbo.transaction(getCameraToCommodity, errorCB, function () {
+            $('#commodityLists li a').bind('tap', function () {
+                rsBrand.commodity.id = $(this).attr('data-commodity-id');
+                rsOrder.commodity.id = rsBrand.commodity.id;
+                /*rsCommodity.name = $(this).find('h3').text();
+                 rsCommodity.picture = $(this).find('img').attr('src');
+                 rsCommodity.specification = $(this).find('p span').eq(0).text();
+                 rsCommodity.unit = $(this).find('p span').eq(1).text();
+                 rsCommodity.price = parseFloat($(this).find('p span').eq(2).text().toString());*/
+            })
+        });
+    </script>
+
+</div>

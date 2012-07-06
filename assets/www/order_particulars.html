@@ -1,0 +1,107 @@
+<div data-role="page" class="type-interior" id="pageOrderParticulars">
+    <div data-role="header" data-theme="f">
+        <h1></h1>
+        <a href="order_list.html" data-icon="back" data-iconpos="notext">Home</a>
+
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+        <div class="content-primary">
+            <ul data-role="listview" data-inset="true" data-split-theme="a"
+                style=" width:80%; margin:0 auto; margin-bottom:38px;">
+                <li><a id="orderCustomer" href="#">
+                    <img src="customer/amy_jones100x100.jpg"/>
+
+                    <h3>客户名称</h3>
+
+                    <p>商品种类:<span>0</span> &nbsp;&nbsp; 总额: <span>0.00</span></p>
+
+                </a></li>
+
+            </ul>
+
+            <ul id="orderCommodityList" data-role="listview" data-inset="true"
+                data-split-theme="a">
+
+                <!--订单配送商品-->
+            </ul>
+
+        </div>
+        <!--/content-primary -->
+
+    </div>
+
+    <div id="operationMenu" class="sk-opermenu" data-position="fixed" style="display: block;">
+        <span class="btn-plusCommodity" id="btnAddcommodity">添加商品</span>
+    </div>
+
+    <!--/footer -->
+
+    <script type="text/javascript">
+        var $orderCustomer = $('#orderCustomer');
+
+        /**
+         * 增加商品
+         */
+        $('#btnAddcommodity').bind('tap', function () {
+            if (rsOrder.stateval != 0) {
+                return false;
+            }
+            rsOrder.commodity.settings = 'new';  // 设置商品编辑状态为新增
+            $.mobile.changePage("brand_list.html");
+        });
+
+        /**
+         * 更改订单客户
+         */
+        $('#orderCustomer').bind('tap', function () {
+            if (rsOrder.stateval != 0) {
+                return false;
+            }
+            $.mobile.changePage("customer_list.html");
+        })
+
+        /**
+         * 打印当前订单客户信息;
+         */
+
+        dbo.transaction(function (tx) {
+            tx.executeSql("select * from customerArchive where id=" + rsOrder.customer.id, [], function (tx, results) {
+                if (results.rows.length == 0) return false;
+                var customer = results.rows.item(0);
+                $orderCustomer.find("h3").text(customer.name);
+                $orderCustomer.find("img").attr('src', customer.directory + customer.picture);
+
+            });
+        }, errorCB);
+
+        /**
+         * 打印当前订单的商品列表;
+         */
+        if (rsOrder.state == "edit") {
+            dbo.transaction(getOrderInventory, errorCB, function () {
+                $orderCustomer.find("p span").eq(0).text(rsOrder.commodityQuantity);  // 显示订单商品数量
+                $orderCustomer.find("p span").eq(1).text(rsOrder.gross);  // 显示订单总额
+                if (rsOrder.stateval != 0) {
+                    return false;
+                }
+
+                /** 编辑商品参数 */
+                $('#orderCommodityList li a').bind('tap', function () {
+                    rsOrder.commodity.settings = 'edit'; // 设置商品设置状态为编辑
+                    rsOrder.inventory.id = $(this).attr('data-inventory-id');
+                    $.mobile.changePage('commodity_setting.html');
+                });
+
+                /** 长按商品项，弹出商品操作菜单 [移除商品] */
+                $('#orderCommodityList li a').bind('taphold', function () {
+                    rsOrder.inventory.id = $(this).attr('data-inventory-id');
+                    $.mobile.changePage("inventory_dialog_options.html");
+                })
+            });
+        }
+
+
+    </script>
+</div>

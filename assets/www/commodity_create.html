@@ -1,0 +1,121 @@
+<div data-role="page" data-theme="c">
+    <div data-role="header" data-theme="f">
+        <h1>增加入库商品</h1>
+        <a href="order_list.html" data-icon="back" data-iconpos="notext" data-direction="reverse">Home</a>
+        <a href="order_list.html" data-icon="home" data-iconpos="notext"
+           data-transition="fade">home</a>
+    </div>
+    <!-- /header -->
+    <div data-role="content" data-theme="c">
+        <div class="content-primary">
+            <div>
+
+                <a href="#"><img src="pictures/commodity/ray_moore100x100.jpg"/></a>
+                <span>商品图片</span>
+            </div>
+
+
+            <fieldset id="frmCreatCommodity">
+                <div data-role="fieldcontain">
+                    <label for="number">名称:</label>
+                    <input type="text" name="commodityname" value=""/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="number">品牌:</label>
+                    <input data-brand-id=1 type="text" name="brand" value="选择品牌"/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="number">规格:</label>
+                    <input type="text" name="size" value="500ml"/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="number">单位:</label>
+                    <input type="text" name="unit" value="件"/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="number">单价:</label>
+                    <input type="number" name="price" value="10.00"/>
+                </div>
+                <a data-role='button' data-theme="b" name="submit" value="">确定</a>
+                <a href="order_list.html" data-role='button' data-theme="c" name="cancel">取消</a>
+
+            </fieldset>
+
+
+        </div>
+        <!--/content-primary -->
+
+
+    </div>
+    <!-- /content -->
+    <script type="text/javascript">
+
+        if (rsCommodity.clone.frmcreatecommodity) {
+            $('#frmCreatCommodity').replaceWith(rsCommodity.clone.frmcreatecommodity);
+        }
+
+
+        /** 选择品牌 */
+        $('input[name=brand]').bind('tap', function () {
+            rsCommodity.clone.frmcreatecommodity = $('#frmCreatCommodity').clone(); // 复制当前表单
+            $.mobile.changePage('brand_list.html');
+            return false;
+        })
+
+        /** 输出品牌 */
+        if (rsCommodity.brand.id) {
+            dbo.transaction(function (tx) {
+                var sql = "select * from brandArchive where id=" + rsCommodity.brand.id;
+
+                tx.executeSql(sql, [], function (tx, results) {
+                    if (results.rows.length == 0) return false;
+                    rsCommodity.brand.name = results.rows.item(0).name;
+
+                })
+            }, errorCB, function () {
+                $('input[name=brand]').attr('data-brand-id', rsCommodity.brand.id);
+                $('input[name=brand]').val(rsCommodity.brand.name);
+                // rsBrand = {};
+            });
+        }
+
+
+        /**
+         * 提交创建商品
+         */
+        $('a[name=submit]').bind('tap', function () {
+
+            var directory = 'pictures/commodity/';
+            var picture = 'ray_moore100x100.jpg';
+            var name = $('input[name=commodityname]').val();
+            var brandid = $('input[name=brand]').attr('data-brand-id');
+            var size = $('input[name=size]').val();
+            var unit = $('input[name=unit]').val();
+            var price = $('input[name=price]').val();
+
+            /** 表单验证过程......     */
+            if ($.trim(name) == '') {
+                alert('请填写商品名称');
+                return false;
+            }
+
+            if (!brandid) {
+                alert('请选择商品品牌');
+                return false;
+            }
+
+            /** 商品数据入库...... */
+
+            dbo.transaction(function (tx) {
+                var sql = "insert into commodityArchive (brandid,name,specification,unit,price,directory,picture)" +
+                        " values (" + brandid + ",'" + name + "','" + size + "','" + unit + "'," + price + ",'" + directory + "','" + picture + "')";
+                console.log(sql);
+                tx.executeSql(sql);
+            }, errorCB, function () {
+                alert("商品创建成功");
+                $.mobile.changePage('order_list.html');
+            })
+        })
+    </script>
+</div>
+<!-- /page -->

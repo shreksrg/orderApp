@@ -1,0 +1,33 @@
+<div data-role="dialog">
+
+    <div data-role="header" data-theme="d">
+        <h1>订单确认签收</h1>
+
+    </div>
+
+    <div data-role="content" data-theme="c">
+
+        <h4 id="orderMarkid">订单编号:DT28</h4>
+
+        <p>提示：确认订单后，订单信息不能再编辑！</p>
+        <a href="#" id="btnsign" data-role="button" data-rel="back" data-theme="b">确定签收</a>
+        <a href="#" id="btncanel" data-role="button" data-theme="c">取消</a>
+    </div>
+    <script type="text/javascript">
+        $('#orderMarkid').text("订单编号:"+rsOrder.id);
+
+        $('#btnsign').bind('tap',function(){
+            dbo.transaction(function(tx){
+                tx.executeSql("update orderArchive set state=1 where id="+rsOrder.id);
+            },errorCB);
+
+        });
+        $('#btncanel').bind('tap', function () {
+
+            $('.ui-dialog').dialog('close');
+
+        })
+
+
+    </script>
+</div>

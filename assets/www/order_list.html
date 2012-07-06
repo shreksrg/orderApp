@@ -1,0 +1,104 @@
+<div id="pageOrderList" data-role="page">
+
+    <div data-role="header" data-theme="f" data-position="fixed">
+        <h1></h1>
+    </div>
+
+    <!-- /header -->
+
+    <div data-role="content">
+        <div class="sk-primarycontent">
+            <ul id="myorderList" data-role="listview" data-inset="true">
+
+                <!--订单列表-->
+
+            </ul>
+
+        </div>
+
+
+    </div>
+    <!-- /content -->
+
+    <div id="operationMenu" class="sk-opermenu" data-position="fixed" style="display: block;">
+        <span class="btn-createOrder" id="btnCreateOrder">创建订单</span>
+        <span class="btn-createCommodity" id="btnCreateCommodity">创建商品</span>
+        <span class="btn-quitApp" id="btnquit">退出</span>
+    </div>
+
+
+    <script type="text/javascript">
+        tunnel = 'order';  // 当前操作频道为订单
+        rsOrder.state = 'edit';  // 重置所有订单状态为编辑
+        rsCommodity.brand.id = null;  // 重置创建商品为null
+        rsCommodity.clone.frmcreatecommodity = null; // 重置创建商品表单副本为null
+
+        /**
+         * "创建订单"按钮
+         */
+
+        $('#btnCreateOrder').bind('tap', function () {
+            rsOrder.state = 'new';
+            $.mobile.changePage("customer_list.html");
+
+        });
+
+        /**
+         * "创建商品"按钮
+         */
+
+        $('#btnCreateCommodity').bind('tap', function () {
+            tunnel = 'commodity';
+            $(this).css({"background-color":"#ccc"});
+            $.mobile.changePage("commodity_create.html");
+        })
+
+
+        /**
+         * 打印订单列表
+         */
+
+        dbo.transaction(getOrders, errorCB, function () {
+
+            /** 快速点击进入订单 */
+
+            $('#myorderList li a[data-order-id]').bind('tap', function () {
+                rsOrder.id = $(this).attr('data-order-id');
+                rsOrder.stateval = parseInt($(this).parents('li').find('a[data-order-state]').attr('data-order-state'));
+                rsOrder.customer.id = $(this).attr('data-customer-id');
+                $.mobile.changePage('order_particulars.html');
+                return false;
+            });
+
+            /** 执行签订订单 */
+
+            $('a[data-order-state]').bind('tap', function () {
+                var orderstate = $(this).attr('data-order-state');
+                if (orderstate != 0) {
+                    var txt;
+                    if (orderstate == 1) {
+                        txt = "订单已签收"
+                    }
+                    if (orderstate == 2) {
+                        txt = "订单已取消"
+                    }
+                    showAlert_Dialog(txt);
+                    return false;
+                }
+                rsOrder.id = $(this).parents('li').find('a[data-order-id]').attr('data-order-id');
+                $.mobile.changePage('order_signup.html', 'pop', false, false);
+                return false;
+            });
+
+            /** 长按订单弹出操作菜单  [取消 | 删除] */
+
+            $('a[data-order-id]').bind('taphold', function () {
+                rsOrder.id = $(this).attr('data-order-id');
+                rsOrder.stateval = $(this).parents('li').find('a[data-order-state]').attr('data-order-state');
+                $.mobile.changePage("order_dialog_options.html");
+            });
+        });
+
+    </script>
+</div>
+<!-- /page -->

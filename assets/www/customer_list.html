@@ -1,0 +1,68 @@
+<div data-role="page" class="type-interior" id="pageCustomerList">
+
+    <div data-role="header" data-theme="f">
+        <h1 style="font-size: 28px; margin:8px 0">选择订单客户</h1>
+        <a href="order_list.html" data-icon="back" data-iconpos="notext" data-direction="reverse">Home</a>
+        <a href="index.html" data-icon="home" data-iconpos="notext"
+           data-transition="fade">home</a>
+
+    </div>
+    <!-- /header -->
+    <div data-role="content">
+        <div class="content-primary">
+            <ul id="customerLists" data-role="listview" data-filter="true" data-inset="true" data-split-theme="a">
+                <!--此处打印客户清单-->
+            </ul>
+        </div>
+        <!--/content-primary -->
+    </div>
+    <!-- /content -->
+    <script type="text/javascript">
+
+
+        dbo.transaction(getCustomer, errorCB, function () {
+            $('#customerLists li a[data-customer-id]').bind('tap', function () {
+                var customerid = $(this).attr('data-customer-id');
+
+
+                /** 订单管理:新增订单客户 */
+
+                if (tunnel == 'order') {
+
+                    if (rsOrder.state == 'new') {
+                        var editDate = new Date();
+                        rsOrder.codingtag++
+                        var codingtag = 'DL' + rsOrder.codingtag;
+                        var sql = "insert into orderArchive (owner,customerid,codingtag,state,quantity,gross,createdate,updatedate) "
+                                + "values ('安捷力'," + customerid + ",'" + codingtag + "',0,0,0.00,'" + editDate.format('yyyy-MM-dd hh:mm:ss').toString() + "','" + editDate.format('yyyy-MM-dd hh:mm:ss').toString() + "')";
+
+                        dbo.transaction(function (tx) {
+                            tx.executeSql(sql);
+                            tx.executeSql("select * from  orderArchive order by id desc limit 1", [], function (tx, results) {
+                                var order = results.rows.item(0);
+                                rsOrder.customer.id = order.customerid;  // 获取新建订单客户ID
+                                rsOrder.id = order.id;  // 获取新建订单ID
+                            });
+                        }, errorCB, function () {
+                            rsOrder.state = 'edit';  // 设置订单状态为编辑
+                            rsOrder.stateval = 0; // 设置订单为可编辑
+                            $.mobile.changePage("order_particulars.html");
+                        });
+                    }
+
+                    if (rsOrder.state == 'edit') {
+                        dbo.transaction(function (tx) {
+                            tx.executeSql("update orderArchive set customerid=" + customerid + " where id=" + rsOrder.id);
+                        }, errorCB, function () {
+                            rsOrder.customer.id = customerid;
+                            $.mobile.changePage("order_particulars.html");
+                        })
+                    }
+                }
+            })
+        });
+
+
+    </script>
+
+</div>

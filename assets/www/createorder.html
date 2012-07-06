@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile: Demos and Documentation</title>
+    <link rel="stylesheet" href="staticx/css/jquery.mobile-1.1.0.css"/>
+    <link rel="stylesheet" href="staticx/css/jqm-docs.css"/>
+    <script src="staticx/js/libs/jquery-1.7.1%20core.js"></script>
+    <script src="staticx/js/libs/jquery.mobile-1.1.0.js"></script>
+    <title>Agilesc electronic sales orders</title>
+</head>
+<body>
+
+<div data-role="page" class="type-interior" id="album-list">
+
+    <div data-role="header" data-theme="f">
+        <h1 style="font-size: 21px">安捷力移动电子订单</h1>
+        <a href="customer_mlist.html" data-icon="home" data-iconpos="notext">Home</a>
+        <a href="../nav.html" data-icon="search" data-iconpos="notext" data-rel="dialog"
+           data-transition="fade">Search</a>
+        <ul class="localnav ui-corner-all ui-controlgroup ui-controlgroup-horizontal" data-type="horizontal"
+            data-role="controlgroup">
+            <li><a class="ui-btn-active ui-btn ui-corner-left ui-btn-up-c" data-transition="fade" data-role="button"
+                   href="docs-lists.html" data-corners="true" data-shadow="true" data-iconshadow="true"
+                   data-wrapperels="span" data-theme="c"><span class="ui-btn-inner ui-corner-left"><span
+                    class="ui-btn-text">加入订单产品</span></span></a></li>
+            <li><a data-transition="fade" data-role="button" href="lists-methods.html" data-corners="true"
+                   data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c"
+                   class="ui-btn ui-btn-up-c"><span class="ui-btn-inner"><span
+                    class="ui-btn-text">新建品类</span></span></a></li>
+            <li><a data-transition="fade" data-role="button" href="lists-events.html" data-corners="true"
+                   data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c"
+                   class="ui-btn ui-btn-up-c ui-corner-right ui-controlgroup-last"><span
+                    class="ui-btn-inner ui-corner-right ui-controlgroup-last"><span class="ui-btn-text">帮助</span></span></a>
+            </li>
+        </ul>
+
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+
+        <div class="content-primary">
+            <!--<div style="padding-bottom:30px;" data-theme="d">客户信息</div>-->
+
+            <ul data-role="listview" data-inset="true" data-split-theme="a"
+                style=" width:80%; margin:0 auto; margin-bottom:38px;">
+                <li><a href="#">
+                    <img src="customer/amy_jones100x100.jpg"/>
+
+                    <h3>订单编号: DT26</h3>
+
+                    <p>品类数:0 &nbsp;&nbsp; 总额:0 </p>
+                </a><a href="reqestorder.html" data-rel="dialog" data-transition="slideup">生成订单</a></li>
+
+            </ul>
+
+            <ul data-role="listview" data-filter="true" data-split-icon="gear" data-inset="true" data-split-theme="a">
+                <li>
+
+                    <a href="#">
+                        <img src="customer/amy_jones100x100.jpg"/>
+
+                        <h3>天喔柚子蜂蜜茶</h3>
+
+                        <P>单价:1.8 &nbsp;&nbsp; 数量:20 &nbsp;&nbsp; 总额:36</P>
+
+
+                    </a><a href="dialog.html" data-rel="dialog" data-transition="slideup">订单签字</a></li>
+
+
+                <li>
+
+                    <a href="#">
+                        <img src="customer/amy_jones100x100.jpg"/>
+
+                        <h3>午后红茶</h3>
+
+                        <P>单价:1.8 &nbsp;&nbsp; 数量:20 &nbsp;&nbsp; 总额:36</P>
+
+
+                    </a><a href="dialog.html" data-rel="dialog" data-transition="slideup">订单签字</a></li>
+
+                <li>
+
+                    <a href="#">
+                        <img src="customer/amy_jones100x100.jpg"/>
+
+                        <h3>康师傅冰红茶</h3>
+
+                        <P>单价:1.8 &nbsp;&nbsp; 数量:20 &nbsp;&nbsp; 总额:36</P>
+
+
+                    </a><a href="dialog.html" data-rel="dialog" data-transition="slideup">订单签字</a></li>
+
+
+            </ul>
+        </div>
+        <!--/content-primary -->
+
+
+    </div>
+    <!-- /content -->
+
+    <div data-role="footer" class="footer-docs" data-theme="c">
+        <p>&copy; 2011-12 For Agilesc mobile</p>
+    </div>
+
+</div>
+<!-- /page -->
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+
+
+<div data-role="page" class="type-interior" id="tc-3">
+
+    <div data-role="header" data-theme="f">
+        <h1>安捷力移动电子订单</h1>
+        <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+        <a href="../nav.html" data-icon="search" data-iconpos="notext" data-rel="dialog"
+           data-transition="fade">Search</a>
+        <ul class="localnav ui-corner-all ui-controlgroup ui-controlgroup-horizontal" data-type="horizontal"
+            data-role="controlgroup">
+            <li><a href="order_append.html" data-role="button" data-transition="fade" data-theme="c">创建客户</a></li>
+            <li><a href="customer_mlist.html" data-role="button" data-transition="fade" data-theme="c">客户管理</a></li>
+            <li><a href="index.html" data-role="button" data-transition="fade" data-theme="c">产品管理</a></li>
+            <li><a id="btnvar" href="#" data-role="button" data-transition="fade" data-theme="c">测试按钮</a></li>
+
+        </ul>
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+
+        <div class="content-primary">
+
+            <ul id="customer" data-inset='true' data-role="listview"   data-filter="true"  >
+                <li><a href="order_particulars.html">
+                    <img src="customer/amy_jones100x100.jpg"/>
+
+                    <h3>沃尔玛杨浦店</h3>
+
+                    <p>上海市杨浦区淞沪路125号</p>
+                </a><a href="lists-split-purchase.html" data-rel="dialog" data-transition="slideup">Purchase album
+                </a></li>
+                <li><a href="customer_mlist.html">
+
+                    <img src="customer/amy_jones100x100.jpg"/>
+
+                    <h3>家乐福徐家汇店</h3>
+
+                    <p>上海市徐汇区斜土路1995号</p>
+
+                </a><a href="lists-split-purchase.html" data-rel="dialog" data-transition="slideup">Purchase album
+                </a></li>
+                <li><a href="customer_mlist.html">
+                    <img src="customer/amy_jones100x100.jpg"/>
+
+                    <h3>华联吉买盛大兴街店</h3>
+
+                    <p>大兴街18号</p>
+                </a><a href="lists-split-purchase.html" data-rel="dialog" data-transition="slideup">Purchase album
+                </a></li>
+                <li><a href="customer_mlist.html">
+                    <img src="customer/amy_jones100x100.jpg"/>
+
+                    <h3>华联吉买盛闸北店</h3>
+
+                    <p>彭浦新村临汾路500号</p>
+                </a><a href="lists-split-purchase.html" data-rel="dialog" data-transition="slideup">Purchase album
+                </a></li>
+
+
+            </ul>
+        </div>
+        <!--/content-primary -->
+
+
+    </div>
+    <!-- /content -->
+
+    <div data-role="footer" class="footer-docs" data-position="fixed" data-theme="c">
+        <p>&copy; 2011-12 For Agilesc mobile</p>
+    </div>
+    <script type="text/javascript">
+
+        $("#tc-3").bind( "pagecreate", function( event){
+            alert("page before create ");
+            var $uli=$('#customer li').eq(0).clone(true);
+            $('#customer').append('<li><a href="#"><img src="customer/amy_jones100x100.jpg"/><h3>家乐福徐家汇店</h3><p>上海市徐汇区斜土路1995号</p></a></li>');
+
+
+
+
+
+
+
+
+        });
+        // alert('hello,shrek');
+        //
+
+        id=24;
+
+        $('#btnvar').live('vclick',function(){
+          //  clone(true).insertAfter(this);
+            var $uli=$('#customer li').eq(0).clone(true);
+           $('#customer').append($uli);
+            return false;
+        });
+
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+    </script>
+
+</div>
+<!-- /page -->

@@ -1,0 +1,96 @@
+
+
+    /**
+     * 初始化订单文档表
+     */
+
+    /*tx.executeSql('DROP TABLE IF EXISTS orderArchive');
+     var sql =
+     "CREATE TABLE IF NOT EXISTS [orderArchive] ( " +
+     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+     "owner NVARCHAR(20), " +
+     "customerid INTEGER, " +
+     "state INTEGER, " +
+     "gross NUMERIC, " +
+     "quantity INTEGER, " +
+     "createdate DATE, " +
+     "updatedate DATE )";
+     tx.executeSql(sql);
+     tx.executeSql("INSERT INTO orderArchive (customerid,state,quantity,gross,createdate,updatedate,owner) VALUES ('12','0',2,'2600.8','" + ordcreateDate.format('yyyy-MM-dd hh:mm:ss').toString() + "','" + ordcreateDate.format('yyyy-MM-dd hh:mm:ss') + "','安捷力')");
+     */
+
+    /**
+     * 初始化客户文档表
+     */
+
+    /*tx.executeSql('DROP TABLE IF EXISTS [customerArchive]');
+     var sql =
+     "CREATE TABLE IF NOT EXISTS [customerArchive] ( " +
+     "[id] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+     "[markid] NUMERIC  NULL, " +
+     "[name] NVARCHAR(20)  NULL, " +
+     "[location] NVARCHAR(100)  NULL, " +
+     "[address] NVARCHAR(200)  NULL, " +
+     "[contact] NVARCHAR(50)  NULL, " +
+     "[picture] VARCHAR(200)  NULL)";
+     tx.executeSql(sql);
+     tx.executeSql(" INSERT INTO customerArchive (name,location,address,contact,picture) VALUES ('华联吉买盛大兴街店','上海市','大兴街18号','400-118-288','customer/amy_jones100x100.jpg') ");
+     */
+
+
+    /**
+     * 初始化商品文档表
+     */
+
+    /*tx.executeSql('DROP TABLE IF EXISTS [commodityArchive]');
+     var sql =
+     "CREATE TABLE [commodityArchive] ( " +
+     "[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " +
+     "[name] NVARCHAR(100)  NULL," +
+     "[price] NUMERIC DEFAULT '0.00' NOT NULL," +
+     "[unit] NVARCHAR(50)  NULL," +
+     "[specification] NVARCHAR(100)  NULL," +
+     "[comment] TEXT  NULL," +
+     "[picture] VARCHAR(100)  NULL )";
+     tx.executeSql(sql);*/
+
+
+    /**
+     * 初始化订单存货表
+     */
+
+    /*tx.executeSql('DROP TABLE IF EXISTS [orderInventory]');
+     var sql =
+     "CREATE TABLE [orderInventory] (" +
+     "[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
+     "[orderid] INTEGER  NOT NULL," +
+     "[commodityid] INTEGER  NULL," +
+     "[price] NUMERIC DEFAULT '0.00' NULL," +
+     "[count] INTEGER DEFAULT '0' NULL," +
+     "[gross] NUMERIC DEFAULT '0' NULL," +
+     "[updatedate] DATE  NULL," +
+     "[deleted] INTEGER DEFAULT '0' NULL)";
+     tx.executeSql(sql);
+
+     */
+
+    /**
+     * 初始化商品品牌表
+     */
+
+    /*tx.executeSql('DROP TABLE IF EXISTS [brandArchive]');
+     var sql =
+     "CREATE TABLE [brandArchive] (" +
+     "[id] INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT," +
+     "[name] NVARCHAR(100) NULL," +
+     "[enterprise] NVARCHAR(100) NULL," +
+     "[summary] TEXT NULL," +
+     "[directory] VARCHAR(100)  NULL," +
+     "[picture] VARCHAR(100)  NULL," +
+     "[deleted] INTEGER DEFAULT '0' NULL)";
+     tx.executeSql(sql);
+
+     */
+
+
+

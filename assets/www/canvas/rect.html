@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="jquery-1.7.1.core.js"></script>
+</head>
+<body>
+
+<canvas id="p" width="600" height="600"></canvas>
+</body>
+</html>
+<style type="text/css">
+
+</style>
+
+<script type="text/javascript">
+
+
+    var p_canvas = document.getElementById("p");
+    var context = p_canvas.getContext("2d");
+
+    // 绘制竖直线
+    for (var x = 0.5; x < 800; x += 10) {
+        context.moveTo(x, 0);
+        context.lineTo(x, 800);
+    }
+
+    // 绘制水平线
+    for (var y = 0.5; y < 800; y += 10) {
+        context.moveTo(0, y);
+        context.lineTo(800, y);
+    }
+
+    context.strokeStyle = "#eee";
+    context.stroke();
+
+    context.beginPath(); // 开始新的路径
+    context.moveTo(0, 40);
+    context.lineTo(240, 40);
+    context.moveTo(260, 40);
+    context.lineTo(500, 40);  // 箭头线
+    context.moveTo(495, 35);
+    context.lineTo(500, 40);
+    context.lineTo(495, 45);
+
+    context.moveTo(60, 0);
+    context.lineTo(60, 153);
+    context.moveTo(60, 173);
+    context.lineTo(60, 375);
+    context.moveTo(65, 370);
+    context.lineTo(60, 375);
+    context.lineTo(55, 370);
+
+    context.strokeStyle = "#000";
+    context.stroke();
+
+    context.beginPath(); // 开始新的路径
+    context.moveTo(100, 100);
+    context.lineTo(90, 90);
+
+    context.strokeStyle = "#000";
+    context.stroke();
+
+
+    /* p_context.beginPath();
+     p_context.moveTo(0, 0);
+     p_context.lineTo(100, 0);
+     // p_context.moveTo(100, 10);
+     p_context.lineTo(100, 100);
+     p_context.strokeStyle = '#000';
+     p_context.stroke();
+
+     p_context.fillRect(50, 100, 100, 100);
+
+     $('#p').click(function () {
+     alert("hello,shrek");
+     })*/
+</script>

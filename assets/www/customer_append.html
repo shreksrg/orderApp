@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile: Demos and Documentation</title>
+    <link rel="stylesheet" href="staticx/css/jquery.mobile-1.1.0.css"/>
+    <link rel="stylesheet" href="staticx/css/jqm-docs.css"/>
+    <script src="staticx/js/libs/jquery-1.7.1%20core.js"></script>
+    <script src="staticx/js/libs/jquery.mobile-1.1.0.js"></script>
+    <title>Agilesc electronic sales orders</title>
+</head>
+<body>
+
+<div data-role="page" class="type-interior" id="album-list">
+
+    <div data-role="header" data-theme="f">
+        <h1>安捷力移动电子订单</h1>
+        <a href="customer_mlist.html" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+        <a href="../nav.html" data-icon="search" data-iconpos="notext" data-rel="dialog"
+           data-transition="fade">Search</a>
+        <ul class="localnav ui-corner-all ui-controlgroup ui-controlgroup-horizontal" data-type="horizontal"
+            data-role="controlgroup">
+            <li><a href="order_append.html" data-role="button" data-transition="fade" data-theme="c">创建客户</a></li>
+            <li><a href="customer_mlist.html" data-role="button" data-transition="fade" data-theme="c">客户管理</a></li>
+            <li><a href="index.html" data-role="button" data-transition="fade" data-theme="c">产品管理</a></li>
+
+        </ul>
+    </div>
+    <!-- /header -->
+
+    <div data-role="content">
+
+        <div class="content-primary">
+
+
+
+            <form action="order_append.html" data-theme="c" method="get" data-ajax="false" class="ui-body ui-body-c ui-corner-all">
+                <fieldset>
+                    <div><a href="#" data-rel="dialog"><img src="customer/amy_jones100x100.jpg"/></a></div>
+                    <div data-role="fieldcontain">
+                        <label for="number">客户名称:</label>
+                        <input type="text" name="number" id="number" value="" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="number">地区:</label>
+                        <input type="text" name="number" id="number" value="" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="number">详细地址:</label>
+                        <input type="text" name="number" id="number" value="" />
+                    </div>
+                    <div data-role="fieldcontain">
+                        <label for="number">联系电话:</label>
+                        <input type="text" name="number" id="number" value="" />
+                    </div>
+                    <button type="submit" data-theme="c" name="submit" value="submit-value">确定</button>
+                </fieldset>
+            </form>
+        </div>
+        <!--/content-primary -->
+
+
+    </div>
+    <!-- /content -->
+
+    <div data-role="footer" data-position="fixed" class="footer-docs" data-theme="c">
+        <p>&copy; 2011-12 For Agilesc mobile</p>
+    </div>
+
+</div>
+<!-- /page -->
+
+</body>
+</html>

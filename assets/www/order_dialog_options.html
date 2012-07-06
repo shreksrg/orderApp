@@ -1,0 +1,66 @@
+<div id="dialogOrderOptions" data-role="dialog">
+
+    <div data-role="header" data-theme="d">
+        <h1></h1>
+
+    </div>
+
+    <div data-role="content" data-theme="c">
+        <ul class="sk-order-diaoptions" data-role='listview' style="margin-bottom: 8px">
+            <li><span id="btnOrderCancel">取消订单</span></li>
+            <li><span id="btnOrderDelete">删除订单</span></li>
+        </ul>
+        <a href="order_list.html" data-rel="back" data-role="button" data-theme='c'>取消</a>
+    </div>
+
+    <script type="text/javascript">
+
+        if (rsOrder.stateval != 0) {
+            $('ul.sk-order-diaoptions li').eq(0).remove();
+        }
+
+        $('#btnOrderDelete').bind('tap', function () {
+            //$('#dialogOrderOptions').css({'display':'none'});
+            showConfirm_Dialog('确定要删除订单', onConfirm_orderDelete, '提示')
+        });
+
+        $('#btnOrderCancel').bind('tap', function () {
+            //$('#dialogOrderOptions').css({'display':'none'});
+            showConfirm_Dialog('确定要取消订单', onConfirm_orderCancel, '提示')
+        })
+
+
+        /**
+         * 删除订单
+         */
+
+        function onConfirm_orderDelete(button) {
+            if (button === 1) {
+                dbo.transaction(function (tx) {
+                    var sql = "update orderArchive set deleted=1 where id=" + rsOrder.id;
+                    tx.executeSql(sql);
+                }, errorCB, function () {
+                    $.mobile.changePage("order_list.html");
+                })
+            }
+        }
+
+        /**
+         * 取消订单
+         */
+
+        function onConfirm_orderCancel(button) {
+            if (button === 1) {
+                dbo.transaction(function (tx) {
+                    var sql = "update orderArchive set state=2 where id=" + rsOrder.id;
+                    tx.executeSql(sql);
+                }, errorCB, function () {
+                    $.mobile.changePage("order_list.html");
+                })
+            }
+            return false;
+        }
+
+    </script>
+
+</div>

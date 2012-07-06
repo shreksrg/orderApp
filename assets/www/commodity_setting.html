@@ -1,0 +1,186 @@
+<div id="pageCommoditySetting" data-role="dialog" data-theme="c">
+
+    <div data-role="header" data-theme="f">
+        <h1>商品参数设定</h1>
+
+
+    </div>
+    <!-- /header -->
+
+    <div data-role="content" data-theme="c">
+
+        <div class="content-primary">
+
+            <ul data-role="listview" data-inset="true" data-split-theme="a">
+                <li><a id="curCommodity" href="#">
+                    <img src="customer/amy_jones100x100.jpg"/>
+
+                    <h3>商品名称</h3>
+
+                    <p>规格: <span></span> &nbsp;&nbsp; 单位: <span></span></p>
+                </a></li>
+
+
+            </ul>
+
+
+            <fieldset>
+
+                <div data-role="fieldcontain">
+                    <label for="number">单价:</label>
+                    <input type="text" name="price" value="0.00"/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="number">数量:</label>
+                    <input type="text" name="number" value="0"/>
+                </div>
+                <div data-role="fieldcontain">
+                    <label for="number">共计:</label>
+                    <input type="text" name="gross" value="0.00"/>
+
+                </div>
+            </fieldset>
+            <button id="btnSaveCommodity" type="button" data-theme="b">确定</button>
+            <button id="btnCannel" type="button" data-theme="c">取消</button>
+
+
+        </div>
+        <!--/content-primary -->
+
+    </div>
+    <!-- /content -->
+    <script type="text/javascript">
+
+        var $Commodity = $('#curCommodity');
+
+        $('#btnCannel').bind('tap', function () {
+            $('.ui-dialog').dialog('close');
+            return false;
+        });
+
+
+        $('input[name=price]').jitchange(function () {
+            jit_getGross();
+        });
+        $('input[name=number]').jitchange(function () {
+            jit_getGross();
+        });
+
+
+        function jit_getGross() {
+            var price = parseFloat($('input[name=price]').val());
+            var count = parseFloat($('input[name=number]').val());
+            $('input[name=gross]').val(price * count);
+
+        }
+
+
+        /**
+         * 新增订单商品时，显示当前增加的商品信息
+         */
+
+        if (rsOrder.commodity.settings == 'new') {
+            var sql = "select * from  commodityArchive where id=" + rsOrder.commodity.id;
+
+            dbo.transaction(function (tx) {
+                tx.executeSql(sql, [], function (tx, results) {
+                    if (results.rows.length == 0) return false;
+                    var commodity = results.rows.item(0);
+                    $Commodity.find('img').attr('src', commodity.directory + commodity.picture);
+                    $Commodity.find('h3').text(commodity.name);
+                    $Commodity.find('p span').eq(0).text(commodity.specification);
+                    $Commodity.find('p span').eq(1).text(commodity.unit);
+                    $('input[name=price]').val(commodity.price);
+                })
+            }, errorCB);
+
+        }
+
+        /**
+         * 编辑订单商品时，显示当前编辑的商品信息
+         */
+
+        if (rsOrder.commodity.settings == 'edit') {
+            var sql = "select * from orderInventory OI inner join commodityArchive CA on OI.commodityid=CA.id where OI.id=" + rsOrder.inventory.id;
+            dbo.transaction(function (tx) {
+                tx.executeSql(sql, [], function (tx, results) {
+                    if (results.rows.length == 0) return false;
+                    var inventory = results.rows.item(0);
+                    rsOrder.inventory.gross = inventory.gross;
+                    $Commodity.find('img').attr('src', inventory.directory + inventory.picture);
+                    $Commodity.find('h3').text(inventory.name);
+                    $Commodity.find('p span').eq(0).text(inventory.specification);
+                    $Commodity.find('p span').eq(1).text(inventory.unit);
+                    $('input[name=price]').val(inventory.price);
+                    $('input[name=number]').val(inventory.count);
+                    $('input[name=gross]').val(inventory.gross);
+                })
+            }, errorCB);
+
+        }
+
+        /**
+         * 保存订单商品设置
+         */
+
+        $("#btnSaveCommodity").bind('tap', function () {
+            var sql;
+            var editDate = new Date();
+            var price = parseFloat($('input[name=price]').val());
+            var number = parseFloat($('input[name=number]').val());
+            var gross = parseFloat($('input[name=gross]').val());
+
+
+            if (!isUnsignedNumeric(price)) {
+                alert("单价必须为数字");
+                return false
+            }
+
+            if (!isUnsignedNumeric(number)) {
+                alert("商品数量必须为数字");
+                return false
+            }
+
+            if (!isUnsignedNumeric(gross)) {
+                alert("总价必须为数字");
+                return false
+            }
+
+            price = roundDecimal(price, 2);  // 单价四舍五入
+            gross = roundDecimal(gross, 2);  // 总价四舍五入
+
+            /** 保存新增的订单商品 :查询语句 */
+
+            if (rsOrder.commodity.settings == 'new') {
+                sql = "insert into orderInventory (orderid,commodityid,price,count,gross,updatedate) "
+                        + " values (" + rsOrder.id + "," + rsOrder.commodity.id + "," + price + "," + number + "," + gross + ",'" + editDate.format('yyyy-MM-dd hh:mm:ss').toString() + "')";
+            }
+
+            /** 保存编辑的订单商品 :查询语句 */
+
+            if (rsOrder.commodity.settings == 'edit') {
+                sql = "update orderInventory set price='" + price + "', count='" + number + "',gross='" + gross + "'  where id=" + rsOrder.inventory.id;
+                gross = gross - rsOrder.inventory.gross;
+
+            }
+
+            console.log(sql);
+
+            /** 执行数据入库保存,并更新当前订单的总额 */
+
+            dbo.transaction(function (tx) {
+                tx.executeSql(sql);
+                tx.executeSql("update orderArchive set gross=gross+" + gross + " where id=" + rsOrder.id);
+            }, errorCB, function () {
+                rsOrder.commodity.settings = 'edit'; // 设置商品状态为编辑
+                $.mobile.changePage('order_particulars.html');
+            });
+
+
+        });
+
+
+    </script>
+
+
+</div>

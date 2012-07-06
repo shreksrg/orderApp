@@ -1,0 +1,35 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>PhoneGap Device Ready Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova-1.8.1.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+        // 当PhoneGap加载完毕后调用onDeviceReady回调函数
+        // 此时，该文件已加载完毕但phonegap.js还没有加载完毕。
+        // 当PhoneGap加载完毕并开始和本地设备进行通讯，
+        // 会触发“deviceready”事件
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // PhoneGap加载完毕，现在可以安全地调用PhoneGap方法
+        function onDeviceReady() {
+            // 注册菜单按钮事件监听器
+            console.log("hello,shrek");
+            document.addEventListener("menubutton", onMenuKeyDown, false);
+        }
+
+        // 处理菜单按钮操作
+        function onMenuKeyDown() {
+            alert("hello,shrek");
+        }
+
+    </script>
+</head>
+<body onload="onLoad()">
+
+<h2>Event - menubutton</h2>
+<p>
+当用户在Android系统上点击菜单按钮的时候触发此事件</p>
+</body>
+</html>

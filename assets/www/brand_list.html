@@ -1,0 +1,65 @@
+<div data-role="page" data-theme="c" id="pageBrandList">
+
+    <div data-role="header" data-theme="f">
+        <h1 style="font-size: 28px; margin:8px 0">选择商品品牌</h1>
+        <a id="btnBrandback" href="#" data-icon="back" data-iconpos="notext" data-directory="reverse">Home</a>
+
+        <a href="order_list.html" data-icon="home" data-iconpos="notext"
+           data-transition="fade">home</a>
+
+    </div>
+    <!-- /header -->
+    <div data-role="content" data-theme="c">
+
+        <div class="content-primary">
+
+            <ul id="brandLists" data-role="listview" data-filter="true" data-inset="true">
+
+
+            </ul>
+        </div>
+        <!--/content-primary -->
+
+    </div>
+    <script type="text/javascript">
+
+
+        /**
+         * 返回页面地址
+         */
+        $('#btnBrandback').bind('tap', function () {
+            var dirUrl;
+            if (tunnel == 'commodity') { // 返回创建商品页面
+                dirUrl = 'commodity_create.html';
+            } else { // 返回订单存货列表页面
+                dirUrl = 'order_particulars.html';
+            }
+            $.mobile.changePage(dirUrl);
+        })
+
+        /**
+         * 打印品牌列表
+         */
+        dbo.transaction(getBrand, errorCB, function () {
+            $('#brandLists li a').bind('tap', function () {
+                var brandid = $(this).attr('data-brand-id');
+                /** 订单管理下 */
+                if (tunnel == 'order') {
+                    rsOrder.brand.id = brandid;
+                    $.mobile.changePage("commodity_list.html");
+                    return false;
+                }
+                /** 商品管理下 */
+                if (tunnel == 'commodity') {
+                    rsCommodity.brand.id = brandid
+                    $.mobile.changePage('commodity_create.html');
+                    return false;
+                }
+                // return false;
+            })
+        });
+
+
+    </script>
+
+</div>

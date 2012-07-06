@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jQuery Mobile: Demos and Documentation</title>
+    <link rel="stylesheet" href="staticx/css/jquery.mobile-1.1.0.css"/>
+    <link rel="stylesheet" href="staticx/css/jqm-docs.css"/>
+    <script src="staticx/js/libs/jquery-1.7.1%20core.js"></script>
+    <script src="staticx/js/libs/jquery.mobile-1.1.0.js"></script>
+    <title>Agilesc electronic sales orders</title>
+</head>
+<body>
+
+<div data-role="page" class="type-interior">
+
+    <div data-role="header" data-theme="f">
+        <h1>Search hidden data</h1>
+        <a href="../../" data-icon="home" data-iconpos="notext" data-direction="reverse">Home</a>
+        <a href="../nav.html" data-icon="search" data-iconpos="notext" data-rel="dialog" data-transition="fade">Search</a>
+    </div><!-- /header -->
+
+    <div data-role="content">
+        <div class="content-primary">
+            <p>By default, the listview filter simply searches against the content in each list item. If you want the filter to search against different content, add the <code>data-filtertext</code>	attribute to the item and populate it with one or many keywords and phrases that should be used to match against. Note that if this attribute is added, the contents of the list item are ignored.</p>
+            <p>This attribute is useful for dealing with allowing for ticker symbols and full company names to be searched, or for covering common spellings and abbreviations for countries.</p>
+
+<pre><code>
+    &lt;li <strong>data-filtertext=&quot;NASDAQ:AAPL Apple Inc.</strong>&quot;&gt;&lt;a href=&quot;#&quot;&gt;Apple&lt;/a&gt;&lt;/li&gt;
+    &lt;li <strong>data-filtertext=&quot;USA U.S.A. United States of America&quot;</strong>&gt;&lt;a href=&quot;#&quot;&gt;United States&lt;/a&gt;&lt;/li&gt;
+</code></pre>
+
+            <ul data-role="listview" data-filter="true" data-filter-placeholder="Search ticker or firm name..." data-inset="true">
+                <li ><a href="#">Adobe</a></li>
+                <li data-filtertext="NASDAQ:AMZNL Amazon.com, Inc."><a href="#">Amazon</a></li>
+                <li data-filtertext="NASDAQ:AAPL Apple Inc."><a href="#">Apple</a></li>
+                <li data-filtertext="NASDAQ:GOOG Google Inc."><a href="#">Google</a></li>
+                <li data-filtertext="NYSE:IBM Intl. International Business Machines Corp."><a href="customer_mlist.html">IBM</a></li>
+                <li data-filtertext="NASDAQ:MSFT Microsoft Corporation"><a href="#">Microsoft</a></li>
+                <li data-filtertext="NASDAQ:YHOO Yahoo! Inc."><a href="#">Yahoo</a></li>
+                <li data-filtertext="美国"><a href="#">United States</a></li>
+            </ul>
+        </div><!--/content-primary -->
+
+
+
+    </div><!-- /content -->
+
+    <div data-role="footer" class="footer-docs" data-theme="c">
+        <p>&copy; 2011-12 The jQuery Foundation</p>
+    </div>
+
+</div><!-- /page -->
+
+</body></html>

@@ -1,0 +1,35 @@
+<div data-role="dialog">
+
+    <div data-role="header" data-theme="d">
+        <h1>删除订单</h1>
+
+    </div>
+
+    <div data-role="content" data-theme="c">
+        <h3>确定删除订单？</h3>
+        <a id="sk-btnensure" href="#" data-role="button" data-theme="b">确定</a>
+        <a id="sk-btncannel" href="#" data-role="button" data-theme="c">取消</a>
+
+    </div>
+    <script type="text/javascript">
+
+        $('#sk-btnensure').bind('tap', function () {
+            dbo.transaction(function (tx) {
+                var sql = "update orderArchive set deleted=1 where id=" + rsOrder.id;
+                tx.executeSql(sql);
+            }, errorCB, function () {
+                $.mobile.changePage("order_list.html");
+            })
+        })
+
+        $('#sk-btncannel').bind('tap', function () {
+            $.mobile.changePage("order_list.html");
+
+        })
+
+
+    </script>
+</div>
+
+
+

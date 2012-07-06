@@ -1,0 +1,50 @@
+<div data-role="page">
+    <div data-role="header" data-theme="f" data-position="fixed">
+        <h1>SQL-EXECUTE</h1>
+
+        <ul data-role="controlgroup" data-type="horizontal" class="localnav">
+
+
+            <li><a href="order_list.html" id="btnpop" data-role="button" data-icon="home">返回订单列表</a></li>
+        </ul>
+
+    </div>
+    <div data-role="content">
+        <div class="sk-primarycontent">
+            <div data-role="fieldcontain">
+                <label for="textarea">Textarea:</label>
+                <textarea cols="60" rows="32" name="textarea" id="textarea"
+                          style="margin: 0px; width: 655px; height: 344px; "></textarea>
+            </div>
+            <button  data-theme="a" class="ui-btn-hidden" aria-disabled="false">执行SQL</button>
+        </div>
+
+    </div>
+
+    <!--<div data-role="content">
+        <div class="sk-primarycontent">
+            <div data-role="fieldcontain">
+                <label for="textarea">Textarea:</label>
+                <textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+            </div>
+
+        </div>
+
+    </div>-->
+
+    <script type="text/javascript">
+        $('button').bind('click', function () {
+            dbo.transaction(function (tx) {
+                var sql = $('textarea').val();
+                tx.executeSql(sql);
+            }, errorCB, function () {
+                alert("execute successfully")
+            })
+
+        });
+
+
+    </script>
+
+
+</div>

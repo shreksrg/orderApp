@@ -1,0 +1,44 @@
+<div data-role="dialog" id="inventory_dialog_options">
+
+    <div data-role="header" data-theme="d">
+        <h1></h1>
+
+    </div>
+
+    <div data-role="content" data-theme="c">
+        <ul class="sk-order-diaoptions" data-role='listview' style="margin-bottom: 8px">
+            <li><span id="btnInventoryRemove">删除商品</span></li>
+        </ul>
+        <a href="order_particulars.html" data-rel="back" data-role="button" data-theme='c'>取消</a>
+
+    </div>
+    <script type="text/javascript">
+
+        $('#btnInventoryRemove').bind('tap', function () {
+            showConfirm_Dialog('确定将商品从订单中删除', onConfirm_inventoryRemove, '提示')
+        });
+
+        /**
+         * 移除商品
+         */
+
+        function onConfirm_inventoryRemove(button) {
+            if (button === 1) {
+                dbo.transaction(function (tx) {
+                    var sql = "update orderInventory set deleted=1 where id=" + rsOrder.inventory.id;
+                    tx.executeSql(sql);
+                }, errorCB, function () {
+                    $.mobile.changePage("order_particulars.html");
+                })
+            }
+        }
+
+
+    </script>
+</div>
+
+
+
+
+
+
